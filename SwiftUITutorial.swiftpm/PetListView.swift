@@ -13,6 +13,12 @@ struct PetListView: View {
     var body: some View {
         NavigationView {
             List {
+                Button("Add Pet") {
+                    viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .buttonStyle(.borderedProminent)
+                
                 Section("My Pets") {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
@@ -42,7 +48,7 @@ struct PetListView: View {
 }
 
 class PetStoreViewModel: ObservableObject {
-    var petStore = PetStoreClass()
+    @Published var petStore = PetStoreStruct()
     @Published var searchText: String = ""
     
     var myPets: [Pet] {
