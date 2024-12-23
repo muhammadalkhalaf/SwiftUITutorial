@@ -8,24 +8,25 @@
 import SwiftUI
 
 struct PetListView: View {
-    @Bindable var viewModel = PetStoreViewModel()
+    var viewModel = PetStoreViewModel()
+    @State var searchText: String = ""
     
     var body: some View {
         NavigationView {
             List {
                 Section("My Pets") {
-                    ForEach(viewModel.myPets) { pet in
+                    ForEach(viewModel.myPets(searchText: searchText)) { pet in
                         row(pet: pet)
                     }
                 }
                 Section("Other Pets") {
-                    ForEach(viewModel.otherPets) { pet in
+                    ForEach(viewModel.otherPets(searchText: searchText)) { pet in
                         row(pet: pet)
                     }
                 }
             }
             .navigationTitle("Pet APP")
-            .searchable(text: $viewModel.searchText)
+            .searchable(text: $searchText)
         }
         
     }
@@ -41,16 +42,14 @@ struct PetListView: View {
     }
 }
 
-@Observable
 class PetStoreViewModel {
     var petStore = PetStoreClass()
-    var searchText: String = ""
     
-    var myPets: [Pet] {
+    func myPets(searchText: String) -> [Pet] {
         // For illustration purposes only. The filtered pets should be cached.
         petStore.myPets.filter { searchText.isEmpty || $0.name.contains(searchText) }
     }
-    var otherPets: [Pet] {
+    func otherPets(searchText: String) -> [Pet] {
         // For illustration purposes only. The filtered pets should be cached.
         petStore.otherPets.filter { searchText.isEmpty || $0.name.contains(searchText) }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView2: View {
     //@State private var model = PetStoreStruct() //@State for value type like structs, Int ..
-    private var model = PetStoreClass() // @StateObject for reference type like Class
+    @StateObject private var model = PetStoreClass() // @StateObject for reference type like Class
     
     var body: some View {
         

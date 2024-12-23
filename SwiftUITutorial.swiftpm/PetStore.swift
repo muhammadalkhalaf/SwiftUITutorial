@@ -7,10 +7,8 @@
 
 import Foundation
 
-
-@Observable
-class PetStoreClass {
-    var myPets: [Pet] = [
+class PetStoreClass: ObservableObject {
+    @Published var myPets: [Pet] = [
         Pet("Roofus", kind: .dog, trick: "Home runs", profileImage: "Roofus", favoriteColor: .blue),
         Pet("Sheldon", kind: .turtle, trick: "Kickflip", profileImage: "logo_kfshrc", favoriteColor: .brown),
     ]

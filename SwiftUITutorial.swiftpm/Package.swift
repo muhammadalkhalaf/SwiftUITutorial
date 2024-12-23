@@ -10,7 +10,7 @@ import AppleProductTypes
 let package = Package(
     name: "SwiftUITutorial",
     platforms: [
-        .iOS("17.0")
+        .iOS("15.0")
     ],
     products: [
         .iOSApplication(
