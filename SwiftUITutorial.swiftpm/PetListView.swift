@@ -8,25 +8,24 @@
 import SwiftUI
 
 struct PetListView: View {
-    var viewModel = PetStoreViewModel()
-    @State var searchText: String = ""
+    @StateObject var viewModel = PetStoreViewModel() // Or you can use @State with PetStoreViewModel as Struct
     
     var body: some View {
         NavigationView {
             List {
                 Section("My Pets") {
-                    ForEach(viewModel.myPets(searchText: searchText)) { pet in
+                    ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
                     }
                 }
                 Section("Other Pets") {
-                    ForEach(viewModel.otherPets(searchText: searchText)) { pet in
+                    ForEach(viewModel.otherPets) { pet in
                         row(pet: pet)
                     }
                 }
             }
             .navigationTitle("Pet APP")
-            .searchable(text: $searchText)
+            .searchable(text: $viewModel.searchText)
         }
         
     }
@@ -42,14 +41,15 @@ struct PetListView: View {
     }
 }
 
-class PetStoreViewModel {
+class PetStoreViewModel: ObservableObject {
     var petStore = PetStoreClass()
+    @Published var searchText: String = ""
     
-    func myPets(searchText: String) -> [Pet] {
+    var myPets: [Pet] {
         // For illustration purposes only. The filtered pets should be cached.
         petStore.myPets.filter { searchText.isEmpty || $0.name.contains(searchText) }
     }
-    func otherPets(searchText: String) -> [Pet] {
+    var otherPets: [Pet] {
         // For illustration purposes only. The filtered pets should be cached.
         petStore.otherPets.filter { searchText.isEmpty || $0.name.contains(searchText) }
     }
