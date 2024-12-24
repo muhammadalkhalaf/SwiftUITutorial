@@ -29,7 +29,7 @@ struct PetListView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            .navigationTitle("Pet APP")
+            .navigationTitle("Pets List")
             .searchable(text: $viewModel.searchText)
         }
         
@@ -44,7 +44,7 @@ struct PetListView: View {
     
     //Function View
     private func row(pet: Pet) -> some View {
-        NavigationLink(destination: Text(pet.name)) {
+        NavigationLink(destination: PetDetailView(pet: pet)) {
             PetRowView(pet: pet)
                 .swipeActions(edge: .leading) {
                     Button("Reward", systemImage: "trophy") {

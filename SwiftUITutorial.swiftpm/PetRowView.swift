@@ -36,9 +36,9 @@ struct PetRowView: View {
     private var profileImage: some View {
         Image(pet.profileImage)
             .resizable()
+            .frame(width: 55, height: 55)
             .clipShape(.circle)
             .shadow(radius: 3)
-            .frame(width: 55, height: 55)
             .overlay {
                 Circle().stroke(pet.favoriteColor, lineWidth: 2)
             }
