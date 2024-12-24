@@ -14,7 +14,7 @@ struct PetListView: View {
         NavigationView {
             List {
                 AddButton(viewModel: viewModel)
-                Section(header: Text("My Pets"),footer: FooterView()) {
+                Section(header: Text("My Pets"),footer: footerView) {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
                     }
@@ -35,6 +35,14 @@ struct PetListView: View {
         
     }
     
+    //Variable View
+    private var footerView: some View {
+        Text("You can add a pet by the button above.")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+    }
+    
+    //Function View
     private func row(pet: Pet) -> some View {
         NavigationLink(destination: Text(pet.name)) {
             PetRowView(pet: pet)
@@ -66,6 +74,7 @@ class PetStoreViewModel: ObservableObject {
     PetListView()
 }
 
+//Custom View
 struct AddButton: View {
     let viewModel: PetStoreViewModel
     
@@ -78,13 +87,5 @@ struct AddButton: View {
             .buttonStyle(.borderedProminent)
             Spacer()
         }
-    }
-}
-
-struct FooterView: View {
-    var body: some View {
-        Text("You can add a pet by the button above.")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
     }
 }
