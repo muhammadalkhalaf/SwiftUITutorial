@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PetDetailView: View {
     var pet: Pet
+    @State private var zoomed = false
     
     var body: some View {
         List {
@@ -19,7 +20,10 @@ struct PetDetailView: View {
                 .padding(.leading, 45.0)
             Image(pet.profileImage)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: zoomed ? .fill : .fit)
+                .onTapGesture {
+                    zoomed.toggle()
+                }
                 .overlay {
                     Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
                 }
@@ -30,9 +34,11 @@ struct PetDetailView: View {
 }
 
 #Preview {
-    PetDetailView(pet: Pet("Name 1",
-                           kind: .cat,
-                           trick: "Trick 1",
-                           profileImage: "Mango",
-                           favoriteColor: .black))
+    NavigationView {
+        PetDetailView(pet: Pet("Name 1",
+                               kind: .cat,
+                               trick: "Trick 1",
+                               profileImage: "Mango",
+                               favoriteColor: .black))
+    }
 }
