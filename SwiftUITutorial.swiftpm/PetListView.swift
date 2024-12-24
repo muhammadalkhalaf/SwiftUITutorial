@@ -14,7 +14,6 @@ struct PetListView: View {
         NavigationView {
             List {
                 AddButton(viewModel: viewModel)
-
                 Section(header: Text("My Pets"),footer: FooterView()) {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
@@ -71,11 +70,14 @@ struct AddButton: View {
     let viewModel: PetStoreViewModel
     
     var body: some View {
-        Button("Add Pet") {
-            viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+        HStack {
+            Spacer()
+            Button("Add Pet") {
+                viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+            }
+            .buttonStyle(.borderedProminent)
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .buttonStyle(.borderedProminent)
     }
 }
 
