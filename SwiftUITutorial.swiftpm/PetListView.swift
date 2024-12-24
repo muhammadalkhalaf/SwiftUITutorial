@@ -13,21 +13,24 @@ struct PetListView: View {
     var body: some View {
         NavigationView {
             List {
-                Button("Add Pet") {
-                    viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .buttonStyle(.borderedProminent)
-                
+                addButton(viewModel: viewModel)
+
                 Section("My Pets") {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
                     }
+                    Text("\(viewModel.myPets.count) Pets")
+                        .foregroundStyle(.secondary)
+                    Text("You can addd a pet by the button above.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
                 Section("Other Pets") {
                     ForEach(viewModel.otherPets) { pet in
                         row(pet: pet)
                     }
+                    Text("\(viewModel.otherPets.count) Pets")
+                        .foregroundStyle(.secondary)
                 }
             }
             .navigationTitle("Pet APP")
@@ -65,4 +68,16 @@ class PetStoreViewModel: ObservableObject {
 
 #Preview {
     PetListView()
+}
+
+struct addButton: View {
+    let viewModel: PetStoreViewModel
+    
+    var body: some View {
+        Button("Add Pet") {
+            viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .buttonStyle(.borderedProminent)
+    }
 }
