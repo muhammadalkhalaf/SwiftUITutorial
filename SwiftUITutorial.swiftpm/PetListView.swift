@@ -37,13 +37,15 @@ struct PetListView: View {
     }
     
     private func row(pet: Pet) -> some View {
-        PetRowView(pet: pet)
-            .swipeActions(edge: .leading) {
-                Button("Reward", systemImage: "trophy") {
-                    pet.giveAward()
+        NavigationLink(destination: Text(pet.name)) {
+            PetRowView(pet: pet)
+                .swipeActions(edge: .leading) {
+                    Button("Reward", systemImage: "trophy") {
+                        pet.giveAward()
+                    }
+                    .tint(.orange)
                 }
-                .tint(.orange)
-            }
+        }
     }
 }
 
