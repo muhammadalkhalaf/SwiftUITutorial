@@ -22,7 +22,9 @@ struct PetDetailView: View {
                 .resizable()
                 .aspectRatio(contentMode: zoomed ? .fill : .fit)
                 .onTapGesture {
-                    zoomed.toggle()
+                    withAnimation {
+                        zoomed.toggle()
+                    }
                 }
                 .overlay {
                     Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
