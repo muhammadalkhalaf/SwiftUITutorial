@@ -55,6 +55,16 @@ struct PetListView: View {
                         pet.giveAward()
                     }
                     .tint(.orange)
+                    if #available(iOS 16.0, *) {
+                        ShareLink(item: pet.name,
+                                  preview: SharePreview("Pet", image: Image(pet.name)))
+                    }
+                }
+                .swipeActions(edge: .trailing) {
+                    Button("Remove", systemImage: "trash.slash") {
+                        viewModel.removePet(pet.id)
+                    }
+                    .tint(.red)
                 }
         }
     }
@@ -68,7 +78,7 @@ struct AddButton: View {
         HStack {
             Spacer()
             Button("Add Pet") {
-                viewModel.petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+                viewModel.addNewPet()
             }
             .buttonStyle(.borderedProminent)
             Spacer()

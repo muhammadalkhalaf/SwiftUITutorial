@@ -54,10 +54,3 @@ class Pet: Identifiable, ObservableObject {
         self.hasAward = true
     }
 }
-
-//@available(iOS 16.0, *)
-//extension Pet: Transferable {
-//    static var transferRepresentation: some TransferRepresentation {
-//        ProxyRepresentation { $0.name }
-//    }
-//}
