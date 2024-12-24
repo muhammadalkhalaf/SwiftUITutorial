@@ -26,7 +26,7 @@ struct RatingView: View {
                     .contentTransition(.numericText(value: Double(rating)))
             } else {
                 Text(rating, format: .number.precision(.integerLength(2)))
-                    .font(.largeTitle.bold())
+                    .font(.largeTitle.bold())//font size
             }
 
             Button("Increase", systemImage: "plus.circle") {

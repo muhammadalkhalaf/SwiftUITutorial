@@ -38,8 +38,8 @@ struct PetListView: View {
     //Variable View
     private var footerView: some View {
         Text("You can add a pet by the button above.")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            .font(.footnote)//font size
+            .foregroundStyle(.secondary)//color
     }
     
     //Function View
@@ -70,10 +70,6 @@ class PetStoreViewModel: ObservableObject {
     }
 }
 
-#Preview {
-    PetListView()
-}
-
 //Custom View
 struct AddButton: View {
     let viewModel: PetStoreViewModel
@@ -86,6 +82,10 @@ struct AddButton: View {
             }
             .buttonStyle(.borderedProminent)
             Spacer()
-        }
+        }.background(.tint)
     }
+}
+
+#Preview {
+    PetListView()
 }

@@ -13,11 +13,13 @@ struct PetDetailView: View {
     
     var body: some View {
         List {
-            Label("\(pet.kind)", systemImage: pet.kind.systemImage)
-            Text(pet.name)
-                .padding(.leading, 45.0)
-            Text(pet.trick)
-                .padding(.leading, 45.0)
+            if !zoomed {
+                Label("\(pet.kind)", systemImage: pet.kind.systemImage)
+                Text(pet.name)
+                    .padding(.leading, 45.0)
+                Text(pet.trick)
+                    .padding(.leading, 45.0)
+            }
             Image(pet.profileImage)
                 .resizable()
                 .aspectRatio(contentMode: zoomed ? .fill : .fit)
