@@ -13,16 +13,13 @@ struct PetListView: View {
     var body: some View {
         NavigationView {
             List {
-                addButton(viewModel: viewModel)
+                AddButton(viewModel: viewModel)
 
-                Section("My Pets") {
+                Section(header: Text("My Pets"),footer: FooterView()) {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
                     }
                     Text("\(viewModel.myPets.count) Pets")
-                        .foregroundStyle(.secondary)
-                    Text("You can addd a pet by the button above.")
-                        .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
                 Section("Other Pets") {
@@ -70,7 +67,7 @@ class PetStoreViewModel: ObservableObject {
     PetListView()
 }
 
-struct addButton: View {
+struct AddButton: View {
     let viewModel: PetStoreViewModel
     
     var body: some View {
@@ -79,5 +76,13 @@ struct addButton: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .buttonStyle(.borderedProminent)
+    }
+}
+
+struct FooterView: View {
+    var body: some View {
+        Text("You can add a pet by the button above.")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
     }
 }
