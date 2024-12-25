@@ -23,6 +23,7 @@ struct PetDetailView: View {
             Image(pet.profileImage)
                 .resizable()
                 .aspectRatio(contentMode: zoomed ? .fill : .fit)
+                .listRowInsets(EdgeInsets())
                 .onTapGesture {
                     withAnimation {
                         zoomed.toggle()
@@ -31,6 +32,15 @@ struct PetDetailView: View {
                 .overlay {
                     Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
                 }
+            NavigationLink(destination: RatingContainerView()){
+                HStack {
+                    Spacer()
+                    Text("Rate Pet")
+                        .foregroundStyle(.white)
+                    Spacer()
+                }
+            }
+            .listRowBackground(Color.green)
         }
         .navigationTitle("Pet Detail")
         .navigationBarTitleDisplayMode(.inline)
