@@ -18,6 +18,8 @@ struct PetListView: View {
                     ForEach(viewModel.myPets) { pet in
                         row(pet: pet)
                     }
+                    .onDelete(perform: viewModel.deleteMyPets)
+                    
                     Text("\(viewModel.myPets.count) Pets")
                         .foregroundStyle(.secondary)
                 }
@@ -25,6 +27,8 @@ struct PetListView: View {
                     ForEach(viewModel.otherPets) { pet in
                         row(pet: pet)
                     }
+                    .onDelete(perform: viewModel.deleteOtherPets)
+                    
                     Text("\(viewModel.otherPets.count) Pets")
                         .foregroundStyle(.secondary)
                 }
@@ -59,12 +63,6 @@ struct PetListView: View {
                         ShareLink(item: pet.name,
                                   preview: SharePreview("Pet", image: Image(pet.name)))
                     }
-                }
-                .swipeActions(edge: .trailing) {
-                    Button("Remove", systemImage: "trash.slash") {
-                        viewModel.removePet(pet.id)
-                    }
-                    .tint(.red)
                 }
         }
     }

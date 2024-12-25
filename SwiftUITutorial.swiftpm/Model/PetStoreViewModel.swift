@@ -26,10 +26,22 @@ class PetStoreViewModel: ObservableObject {
         }
     }
     
-    func removePet(_ id: any Hashable) {
+//    func removePet(_ id: any Hashable) {
+//        withAnimation {
+//            petStore.myPets.removeAll(where: {$0.id == id as! UUID})
+//            petStore.otherPets.removeAll(where: {$0.id == id as! UUID})
+//        }
+//    }
+    
+    func deleteMyPets(offsets: IndexSet) {
         withAnimation {
-            petStore.myPets.removeAll(where: {$0.id == id as! UUID})
-            petStore.otherPets.removeAll(where: {$0.id == id as! UUID})
+            petStore.myPets.remove(atOffsets: offsets)
+        }
+    }
+    
+    func deleteOtherPets(offsets: IndexSet) {
+        withAnimation {
+            petStore.otherPets.remove(atOffsets: offsets)
         }
     }
 }
