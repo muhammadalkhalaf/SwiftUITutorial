@@ -5,7 +5,7 @@
 //  Created by Muhammad Alkhalaf on 24.12.2024.
 //
 
-import Foundation
+import SwiftUI
 
 class PetStoreViewModel: ObservableObject {
     @Published var petStore = PetStoreStruct()
@@ -21,11 +21,15 @@ class PetStoreViewModel: ObservableObject {
     }
     
     func addNewPet() {
-        petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+        withAnimation {
+            petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
+        }
     }
     
     func removePet(_ id: any Hashable) {
-        petStore.myPets.removeAll(where: {$0.id == id as! UUID})
-        petStore.otherPets.removeAll(where: {$0.id == id as! UUID})
+        withAnimation {
+            petStore.myPets.removeAll(where: {$0.id == id as! UUID})
+            petStore.otherPets.removeAll(where: {$0.id == id as! UUID})
+        }
     }
 }
