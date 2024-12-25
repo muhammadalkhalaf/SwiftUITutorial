@@ -50,6 +50,15 @@ class Pet: Identifiable, ObservableObject {
         self.favoriteColor = favoriteColor
     }
     
+    init(_ name: String, kind: Kind, trick: String, profileImage: String, favoriteColor: Color, hasAward: Bool) {
+        self.name = name
+        self.kind = kind
+        self.trick = trick
+        self.profileImage = profileImage
+        self.favoriteColor = favoriteColor
+        self.hasAward = hasAward
+    }
+    
     func giveAward() {
         self.hasAward = true
     }

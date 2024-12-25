@@ -12,38 +12,54 @@ struct PetDetailView: View {
     @State private var zoomed = false
     
     var body: some View {
-        List {
-            if !zoomed {
-                Label("\(pet.kind)", systemImage: pet.kind.systemImage)
-                Text(pet.name)
-                    .padding(.leading, 45.0)
-                Text(pet.trick)
-                    .padding(.leading, 45.0)
-            }
-            Image(pet.profileImage)
-                .resizable()
-                .aspectRatio(contentMode: zoomed ? .fill : .fit)
-                .listRowInsets(EdgeInsets())
-                .onTapGesture {
-                    withAnimation {
-                        zoomed.toggle()
+        VStack(spacing: 0) {
+            List {
+                if !zoomed {
+                    Label("\(pet.kind)", systemImage: pet.kind.systemImage)
+                    Text(pet.name)
+                        .padding(.leading, 45.0)
+                    Text(pet.trick)
+                        .padding(.leading, 45.0)
+                }
+                Image(pet.profileImage)
+                    .resizable()
+                    .aspectRatio(contentMode: zoomed ? .fill : .fit)
+                    .listRowInsets(EdgeInsets())
+                    .onTapGesture {
+                        withAnimation {
+                            zoomed.toggle()
+                        }
+                    }
+                    .overlay {
+                        Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
+                    }
+                NavigationLink(destination: RatingContainerView()){
+                    HStack {
+                        Spacer()
+                        Text("Rate Pet")
+                            .foregroundStyle(.white)
+                        Spacer()
                     }
                 }
-                .overlay {
-                    Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
-                }
-            NavigationLink(destination: RatingContainerView()){
+                .listRowBackground(Color.green)
+            }
+            
+            if pet.hasAward {
                 HStack {
                     Spacer()
-                    Text("Rate Pet")
-                        .foregroundStyle(.white)
+                    Label("Has Award", systemImage: "flame.fill")
                     Spacer()
                 }
+                .padding(.bottom)
+                .padding(.top, 5)
+                .font(.headline.smallCaps())
+                .foregroundStyle(.white)
+                .background(.orange)
             }
-            .listRowBackground(Color.green)
         }
         .navigationTitle("Pet Detail")
         .navigationBarTitleDisplayMode(.inline)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -53,6 +69,7 @@ struct PetDetailView: View {
                                kind: .cat,
                                trick: "Trick 1",
                                profileImage: "Mango",
-                               favoriteColor: .black))
+                               favoriteColor: .black,
+                               hasAward: true))
     }
 }
