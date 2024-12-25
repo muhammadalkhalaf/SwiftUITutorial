@@ -38,7 +38,12 @@ struct PetListView: View {
             .navigationTitle("Pets List")
             .searchable(text: $viewModel.searchText)
             .toolbar {
-                EditButton()
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Add a Pet", action: viewModel.addNewPet)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
             }
             
             //Placeholder for iPad and on an iPhone automatically removed
