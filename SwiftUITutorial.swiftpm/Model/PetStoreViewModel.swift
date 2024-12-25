@@ -20,6 +20,18 @@ class PetStoreViewModel: ObservableObject {
         petStore.otherPets.filter { searchText.isEmpty || $0.name.contains(searchText) }
     }
     
+    func moveMyPet(from: IndexSet, to: Int) {
+        withAnimation {
+            petStore.myPets.move(fromOffsets: from, toOffset: to)
+        }
+    }
+    
+    func moveOtherPet(from: IndexSet, to: Int) {
+        withAnimation {
+            petStore.otherPets.move(fromOffsets: from, toOffset: to)
+        }
+    }
+    
     func addNewPet() {
         withAnimation {
             petStore.myPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))

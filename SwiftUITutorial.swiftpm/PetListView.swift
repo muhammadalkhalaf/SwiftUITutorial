@@ -19,6 +19,7 @@ struct PetListView: View {
                         row(pet: pet)
                     }
                     .onDelete(perform: viewModel.deleteMyPets)
+                    .onMove(perform: viewModel.moveMyPet)
                     
                     Text("\(viewModel.myPets.count) Pets")
                         .foregroundStyle(.secondary)
@@ -28,7 +29,8 @@ struct PetListView: View {
                         row(pet: pet)
                     }
                     .onDelete(perform: viewModel.deleteOtherPets)
-                    
+                    .onMove(perform: viewModel.moveOtherPet)
+
                     Text("\(viewModel.otherPets.count) Pets")
                         .foregroundStyle(.secondary)
                 }
