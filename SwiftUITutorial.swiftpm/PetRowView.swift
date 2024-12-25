@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PetRowView: View {
-    @ObservedObject var pet: Pet// @StateObject or @ObservedObject
+    @ObservedObject var pet: Pet
+    //@ObservedObject instead of @StateObject because will be initiated from outside
     
     var body: some View {
         HStack {

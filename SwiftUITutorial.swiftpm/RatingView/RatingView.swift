@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RatingView: View {
     @Binding var rating: Int
+    //@Binding used only for value type like structs, Int ..
+    //instead of @Binding we can use @ObservedObject with Rating class type (like pet in PetRowView)
+    //@State will not pass changes to the parent view.(Because of this we use @Binding)
     
     var body: some View {
         HStack {
