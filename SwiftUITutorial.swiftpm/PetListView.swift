@@ -35,6 +35,9 @@ struct PetListView: View {
             }
             .navigationTitle("Pets List")
             .searchable(text: $viewModel.searchText)
+            .toolbar {
+                EditButton()
+            }
             
             //Placeholder for iPad and on an iPhone automatically removed
             Text("Select a pet from left menu")
