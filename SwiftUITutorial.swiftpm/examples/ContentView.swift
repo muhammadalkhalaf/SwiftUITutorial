@@ -9,6 +9,7 @@ struct ContentView: View {
             Text("Hello, world!")
                 .padding()
                 .background(.yellow, in: RoundedRectangle(cornerRadius: 8))
+                .shadow(radius: 5)
         }
     }
 }
