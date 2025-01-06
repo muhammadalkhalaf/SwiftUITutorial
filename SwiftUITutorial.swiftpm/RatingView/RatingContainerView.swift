@@ -29,7 +29,10 @@ struct RatingContainerView: View {
             }
             if #available(iOS 16.0, *) {
                 Gauge(value: Double(rating), in: 0...10) {
-                    Text("Rating")
+                    HStack {
+                        Text("Rating")
+                        Spacer()
+                    }
                 }
             }
             RatingView(rating: $rating)
