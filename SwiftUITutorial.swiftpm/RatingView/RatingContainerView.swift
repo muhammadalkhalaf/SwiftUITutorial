@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RatingContainerView: View {
-    @State private var rating: Int = 5
+    //@State private var rating: Int = 5
+    @SceneStorage("rating") private var rating: Int = 5
+    //@SceneStorage will store the value locally and it acts just like @State
     
     var body: some View {
         if #available(iOS 16.0, *) {
