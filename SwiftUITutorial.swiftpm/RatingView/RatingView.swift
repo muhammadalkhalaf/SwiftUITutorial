@@ -15,6 +15,7 @@ struct RatingView: View {
     
     var body: some View {
         HStack {
+            Spacer()
             Button("Decrease", systemImage: "minus.circle") {
                 withAnimation{
                     rating -= 1
@@ -39,6 +40,7 @@ struct RatingView: View {
             }
             .disabled(rating == 10)
             .labelStyle(.iconOnly)
+            Spacer()
         }
     }
 }

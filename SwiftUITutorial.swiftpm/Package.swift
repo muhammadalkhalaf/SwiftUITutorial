@@ -17,7 +17,7 @@ let package = Package(
             name: "SwiftUITutorial",
             targets: ["AppModule"],
             bundleIdentifier: "us.medrics.SwiftUITutorial",
-            teamIdentifier: "59GH47PKAS",
+            teamIdentifier: "YP5ST36H3J",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .cloud),
