@@ -27,15 +27,16 @@ struct RatingContainerView: View {
             Toggle(isOn: $test2) {
                 Text("Test 2")
             }
-        }
-        if #available(iOS 16.0, *) {
-            Gauge(value: Double(rating), in: 0...10) {
-                Text("Rating")
+            if #available(iOS 16.0, *) {
+                Gauge(value: Double(rating), in: 0...10) {
+                    Text("Rating")
+                }
             }
+            RatingView(rating: $rating)
+                .buttonStyle(.borderless)//for click event
+                .navigationTitle("Rate Pet")
+            //$rating creates a two-way binding and to do that in the parent rating should be @State or @StateObject but for @StateObject we should pass value type properties.(see $viewModel.searchText in PetListView)
         }
-        RatingView(rating: $rating)
-            .navigationTitle("Rate Pet")
-        //$ creates a two-way binding and to do that in the parent rating should be @State or @StateObject but for @StateObject we should pass value type properties.(see $viewModel.searchText in PetListView)
     }
 }
 
