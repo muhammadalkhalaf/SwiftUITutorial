@@ -24,7 +24,18 @@ struct ContentView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             
+            Text("Hello, world!")
+                .border(.orange)
+                .padding()
+                .border(.black)
+            
+            RoundedRectangle(cornerRadius: 30, style: .circular)
+                .frame(width: 100, height: 100)
+                .border(.black, width: 2)
+                .background(.blue)
+                .foregroundStyle(.tint)
         }
+        .padding()
     }
 }
 
