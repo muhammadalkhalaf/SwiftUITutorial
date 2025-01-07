@@ -29,11 +29,17 @@ struct ContentView: View {
                 .padding()
                 .border(.black)
             
-            RoundedRectangle(cornerRadius: 30, style: .circular)
-                .frame(width: 100, height: 100)
-                .border(.black, width: 2)
-                .background(.blue)
-                .foregroundStyle(.tint)
+            ZStack {
+                RoundedRectangle(cornerRadius: 30, style: .circular)
+                    .frame(width: 100, height: 100)
+                    .border(.black, width: 2)
+                    .background(.blue)
+                    .foregroundStyle(.tint)
+                
+                Image(systemName: "figure.2.and.child.holdinghands")
+                    .font(.largeTitle)
+                    .foregroundStyle(.white)
+            }
         }
         .padding()
     }
