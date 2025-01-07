@@ -22,6 +22,7 @@ struct ContentView1: View {
                 Spacer()
 
                 Text(pet.trick)
+                    .font(.system(size: 16))
             }
         }
     }
