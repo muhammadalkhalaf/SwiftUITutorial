@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct MyApp: App {
+struct SwiftUITutorialApp: App {
     var body: some Scene {
         WindowGroup {
             PetListView()
         }
     }
+}
+
+#Preview {
+    PetListView()
 }
