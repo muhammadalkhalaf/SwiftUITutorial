@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PetListView: View {
-    @StateObject var viewModel = PetStoreViewModel() // Or you can use @State with PetStoreViewModel as Struct
+    @StateObject private var viewModel = PetStoreViewModel() // Or you can use @State with PetStoreViewModel as Struct
     
     var body: some View {
         NavigationView {
