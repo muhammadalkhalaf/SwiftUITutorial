@@ -39,6 +39,16 @@ struct RatingContainerView: View {
                 .buttonStyle(.borderless)//for click event
                 .navigationTitle("Rate Pet")
             //$rating creates a two-way binding and to do that in the parent rating should be @State or @StateObject but for @StateObject we should pass value type properties.(see $viewModel.searchText in PetListView)
+           
+            NavigationLink(destination: ViewPager()){
+                HStack {
+                    Spacer()
+                    Text("View Pager Example")
+                        .foregroundStyle(.white)
+                    Spacer()
+                }
+            }
+            .listRowBackground(Color.green)
         }
     }
 }
