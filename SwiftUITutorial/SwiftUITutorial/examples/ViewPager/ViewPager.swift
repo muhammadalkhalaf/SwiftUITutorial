@@ -40,8 +40,3 @@ struct ViewPager: View {
 #Preview {
     ViewPager()
 }
-
-extension Color {
-    static let gradientTop = Color("GradientTop")
-    static let gradientBottom = Color("GradientBottom")
-}
