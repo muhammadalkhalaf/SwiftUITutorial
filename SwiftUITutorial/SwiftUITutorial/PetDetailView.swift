@@ -31,7 +31,9 @@ struct PetDetailView: View {
                         }
                     }
                     .overlay {
-                        Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
+//                        Rectangle().stroke(pet.favoriteColor, lineWidth: 5)
+                        RoundedRectangle(cornerRadius: 15).stroke(pet.favoriteColor, lineWidth: 15)
+
                     }
                 NavigationLink(destination: RatingContainerView()){
                     HStack {
