@@ -8,7 +8,7 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
                 .font(.largeTitle)
             
-            Text("Hello, world!")
+            Text("Hello, world! 1")
                 .fontWeight(.bold)
                 .padding()
                 .background(.yellow,
@@ -17,14 +17,14 @@ struct ContentView: View {
                 .font(.headline)
                 .foregroundStyle(.primary)
 
-            Text("Hello, world!")
+            Text("Hello, world! 2")
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             
-            Text("Hello, world!")
+            Text("Hello, world! 3")
                 .border(.orange)
                 .padding()
                 .border(.black)
