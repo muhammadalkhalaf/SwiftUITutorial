@@ -25,6 +25,7 @@ struct PetDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: zoomed ? .fill : .fit)
                     .listRowInsets(EdgeInsets())
+                    .scaleEffect(zoomed ? 1.5 : 1)
                     .onTapGesture {
                         withAnimation {
                             zoomed.toggle()
