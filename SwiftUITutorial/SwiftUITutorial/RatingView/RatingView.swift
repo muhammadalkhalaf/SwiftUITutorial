@@ -23,7 +23,7 @@ struct RatingView: View {
             }
             .disabled(rating == 0)
             .labelStyle(.iconOnly)
-
+            
             if #available(iOS 17.0, *) {
                 Text(rating, format: .number.precision(.integerLength(2)))
                     .font(.largeTitle.bold())
@@ -32,7 +32,7 @@ struct RatingView: View {
                 Text(rating, format: .number.precision(.integerLength(2)))
                     .font(.largeTitle.bold())//font size
             }
-
+            
             Button("Increase", systemImage: "plus.circle") {
                 withAnimation {
                     rating += 1
@@ -44,3 +44,10 @@ struct RatingView: View {
         }
     }
 }
+
+@available(iOS 17.0, *)
+#Preview  {
+    @Previewable @State var rating = 10
+    RatingView(rating: $rating)
+}
+
