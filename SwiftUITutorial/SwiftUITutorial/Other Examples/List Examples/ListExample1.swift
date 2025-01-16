@@ -1,14 +1,14 @@
 //
-//  ContentView1.swift
+//  ListExample1.swift
 //  SwiftUITutorial
 //
 //  Created by Muhammad Alkhalaf on 18.12.2024.
 //
 import SwiftUI
 
-struct ContentView1: View {
+struct ListExample1: View {
     @State private var model = PetStoreStruct()
-
+    
     var body: some View {
         Button("Add Pet") {
             model.otherPets.append(Pet("Chirpy", kind: .bug, trick: "Canon in D", profileImage: "Chirpy", favoriteColor: .orange))
@@ -29,5 +29,5 @@ struct ContentView1: View {
 }
 
 #Preview {
-    ContentView1()
+    ListExample1()
 }

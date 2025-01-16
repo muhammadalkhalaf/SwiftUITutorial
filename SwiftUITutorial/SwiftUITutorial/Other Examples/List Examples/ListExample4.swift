@@ -1,5 +1,5 @@
 //
-//  ContentView4.swift
+//  ListExample4.swift
 //  SwiftUITutorial
 //
 //  Created by Muhammad Alkhalaf on 19.12.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView4: View {
+struct ListExample4: View {
     private var model = PetStoreClass()
     
     var body: some View {
@@ -40,5 +40,5 @@ struct ContentView4: View {
 }
 
 #Preview {
-    ContentView4()
+    ListExample4()
 }

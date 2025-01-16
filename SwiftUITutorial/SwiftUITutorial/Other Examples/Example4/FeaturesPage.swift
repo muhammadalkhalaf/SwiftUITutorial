@@ -31,8 +31,8 @@ struct FeaturesPage: View {
 #Preview {
     if #available(iOS 16.0, *) {
         FeaturesPage()
-            .frame(maxHeight: .infinity)
-            .background(Gradient(colors: gradientColors))
-            .foregroundStyle(.white)
+//            .frame(maxHeight: .infinity)
+//            .background(Gradient(colors: gradientColors))
+//            .foregroundStyle(.white)
     }
 }

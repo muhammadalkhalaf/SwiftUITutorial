@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-let gradientColors: [Color] = [
-    .gradientTop,
-    .gradientBottom
-]
-
-
 struct ViewPager: View {
     
     private func MyTabView() -> some View {
@@ -23,6 +17,7 @@ struct ViewPager: View {
         .tabViewStyle(.page)
         .foregroundStyle(.white)
         //When you apply .foregroundStyle to a view, the color will cascade down to all subviews that don’t set their own foreground style.
+        //dışarından verdik ama içindeki bütün subview lere bu foregroundStyle uygulanacak
     }
     
     var body: some View {
@@ -36,7 +31,12 @@ struct ViewPager: View {
     }
 }
 
-
 #Preview {
     ViewPager()
 }
+
+
+let gradientColors: [Color] = [
+    .gradientTop,
+    .gradientBottom
+]

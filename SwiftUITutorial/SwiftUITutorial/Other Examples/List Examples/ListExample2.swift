@@ -1,5 +1,5 @@
 //
-//  ContentView2.swift
+//  ListExample2.swift
 //  SwiftUITutorial
 //
 //  Created by Muhammad Alkhalaf on 18.12.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView2: View {
+struct ListExample2: View {
     //@State private var model = PetStoreStruct() //@State for value type like structs, Int ..
     @StateObject private var model = PetStoreClass() // @StateObject for reference type like Class
     
@@ -25,5 +25,5 @@ struct ContentView2: View {
 }
 
 #Preview {
-    ContentView2()
+    ListExample2()
 }

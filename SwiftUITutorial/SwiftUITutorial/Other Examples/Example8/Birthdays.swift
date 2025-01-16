@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
+@available(iOS 17, *)
 struct Birthdays: View {
     @State private var friends: [Friend] = [
         Friend(name: "Elton Lin", birthday: .now),
@@ -55,7 +55,7 @@ struct Birthdays: View {
     }
 }
 
-@available(iOS 16.0, *)
+@available(iOS 17, *)
 #Preview {
     Birthdays()
 }
