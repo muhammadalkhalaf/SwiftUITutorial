@@ -97,7 +97,7 @@ struct Example6: View {
                 Text("Pick Random Name")
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
-                    //.frame(maxWidth: .infinity)//width match parent olacak
+                    .frame(maxWidth: .infinity)//width match parent olacak
             }
             .buttonStyle(.borderedProminent)
             .font(.title2)

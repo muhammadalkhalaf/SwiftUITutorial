@@ -35,12 +35,15 @@ struct Birthdays: View {
                     Text("New Birthday")
                         .font(.headline)
                     DatePicker(selection: $newDate,
-                               in: Date.distantPast...Date.now,
+                               in: Date.distantPast...Date.now,//user can’t select a date in the future.
                                displayedComponents: .date) {
+//                        The closure following DatePicker contains its label. The “New Birthday” title describes what goes into the date picker just fine, so use the label to display the TextField.
                         TextField("Name", text: $newName)
                             .textFieldStyle(.roundedBorder)
                     }
                     Button("Save") {
+                        //View e erişemediğimiz için DatePicker e erişip selected date i okuyamayız
+                        //o yüzden @State newDate kullandık (TextField için aynı şey)
                         let newFriend = Friend(name: newName, birthday: newDate)
                         friends.append(newFriend)
                         newName = ""

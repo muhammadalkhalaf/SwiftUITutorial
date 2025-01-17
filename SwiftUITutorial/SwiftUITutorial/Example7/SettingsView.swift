@@ -10,7 +10,10 @@ import SwiftUI
 struct SettingsView: View {
     @Binding var doesHighestScoreWin: Bool
     @Binding var startingPoints: Int
-
+//@Binding @State gibi davranıyor ama değişikliği dış ekrandaki değişkene geçiriyor (dış ekran parent view demek)
+//@State hep private olması lazım, o yüzden değişikliği parent view e geçiremez
+//@Binding sadece value type için kullanılıyor structs, Int ..(@State gibi)
+//@Binding burada set edilmez hep parent view üzerinden init edilmesi lazım
     var body: some View {
         VStack(alignment: .leading) {
             Text("Game Rules")
