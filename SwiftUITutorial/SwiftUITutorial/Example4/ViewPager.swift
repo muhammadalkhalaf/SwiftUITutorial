@@ -26,7 +26,10 @@ struct ViewPager: View {
                 .background(Gradient(colors: gradientColors))
         } else {
             MyTabView()
-                .background(.brown)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: gradientColors),
+                                   startPoint: .top, endPoint: .bottom)
+                )
         }
     }
 }
