@@ -29,6 +29,12 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()// buradaki View Canvas te gösterilecek
+#Preview {//#Preview o da bir macro
+    ContentView()// buradaki View Canvas te gösterilecek kaldırsak uygulama çalışıyor sorun olmuyor
 }
+// Eski Syntax şe şekilde biraz karışıktı
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
