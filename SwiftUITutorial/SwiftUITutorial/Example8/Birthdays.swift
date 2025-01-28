@@ -9,6 +9,21 @@ import SwiftUI
 import SwiftData
 
 @available(iOS 17, *)
+@main
+struct BirthdaysSwiftDataApp: App {
+    var body: some Scene {
+        WindowGroup {
+            Birthdays()
+                .modelContainer(for: Friend.self)
+            //modelContainer, Friend verilerinin saklandığı yer ile ekrandaki View arasında bulunan bir çevirmen gibidir.
+            //modelContainer, modelin nasıl kaydedileceğini anlamak için Friend sınıfını kullanır.
+            // Database <=Container=> View
+            //Friend.self belirli bir instance(Object) yerine Friend type ifade eder.
+        }
+    }
+}
+
+@available(iOS 17, *)
 struct Birthdays: View {
     //@State private var friends: [Friend] = [Friend(name: "Elton Lin", birthday: .now)]
     @Query private var friends: [Friend]// <= Database teki friends ile set ediliyor

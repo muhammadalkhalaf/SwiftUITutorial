@@ -9,8 +9,7 @@ import SwiftUI
 import SwiftData
 
 //@main bir Macro giriş noktasını (Entry Point) belirtmek için kullanılıyor, uygulama buradan başlatılıyor demek
-@available(iOS 17, *)
-@main
+//@main
 struct SwiftUITutorialApp: App {
     //Uygulama Struct üzerinden gerçekleştirildi çünkü SwiftUI da bütün Viewler Struct
     //Giriş noktasının App protocol e uygun olması ve içeriğini sağlaması lazım
@@ -18,12 +17,7 @@ struct SwiftUITutorialApp: App {
     //şu şekilde sağlanacak
     var body: some Scene {
         WindowGroup {
-            Birthdays()//Bizim Root View, MainScreen yada HomePage gibi
-                .modelContainer(for: Friend.self)
-            //modelContainer, Friend verilerinin saklandığı yer ile ekrandaki View arasında bulunan bir çevirmen gibidir.
-            //modelContainer, modelin nasıl kaydedileceğini anlamak için Friend sınıfını kullanır.
-            // Database <=Container=> View
-            //Friend.self belirli bir instance(Object) yerine Friend type ifade eder.
+            ContentView()//Bizim Root View, MainScreen yada HomePage gibi
         }
     }
     //bu syntax a computed property denir
@@ -41,18 +35,18 @@ struct SwiftUITutorialApp: App {
 }
 
 
-let numb = [98, -20, -30, 42, 18, 35]
-let asc5 = numb.sorted(by: { (n1:Int, n2:Int) -> Bool in
-    return  n1<n2
-})
-let asc4 = numb.sorted(by: {    n1, n2  -> Bool in
-    return  n1<n2
-})
-let asc3 = numb.sorted(by:{     n1, n2 in
-    return  n1<n2
-})
-let asc2 = numb.sorted(by:{    n1,n2 in
-    n1<n2
-})
-let asc1 = numb.sorted(by:{ $0 < $1 })
-let asc = numb.sorted(by: < )
+//let numb = [98, -20, -30, 42, 18, 35]
+//let asc5 = numb.sorted(by: { (n1:Int, n2:Int) -> Bool in
+//    return  n1<n2
+//})
+//let asc4 = numb.sorted(by: {    n1, n2  -> Bool in
+//    return  n1<n2
+//})
+//let asc3 = numb.sorted(by:{     n1, n2 in
+//    return  n1<n2
+//})
+//let asc2 = numb.sorted(by:{    n1,n2 in
+//    n1<n2
+//})
+//let asc1 = numb.sorted(by:{ $0 < $1 })
+//let asc = numb.sorted(by: < )
