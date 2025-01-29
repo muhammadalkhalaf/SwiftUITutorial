@@ -1,5 +1,5 @@
 //
-//  Birthdays.swift
+//  BirthdaysSwiftData.swift
 //  SwiftUITutorial
 //
 //  Created by Muhammad Alkhalaf on 15.01.2025.
@@ -9,11 +9,11 @@ import SwiftUI
 import SwiftData
 
 @available(iOS 17, *)
-@main
+//@main
 struct BirthdaysSwiftDataApp: App {
     var body: some Scene {
         WindowGroup {
-            Birthdays()
+            BirthdaysSwiftData()//Bizim Root View
                 .modelContainer(for: Friend.self)
             //modelContainer, Friend verilerinin saklandığı yer ile ekrandaki View arasında bulunan bir çevirmen gibidir.
             //modelContainer, modelin nasıl kaydedileceğini anlamak için Friend sınıfını kullanır.
@@ -23,8 +23,9 @@ struct BirthdaysSwiftDataApp: App {
     }
 }
 
+// MARK: - Birthdays View
 @available(iOS 17, *)
-struct Birthdays: View {
+struct BirthdaysSwiftData: View {
     //@State private var friends: [Friend] = [Friend(name: "Elton Lin", birthday: .now)]
     @Query private var friends: [Friend]// <= Database teki friends ile set ediliyor
     //@Query, database ten kolay ve hızlı bir şekilde veri çekmek için kullanılıyor
@@ -39,7 +40,7 @@ struct Birthdays: View {
     //@Query(filter: #Predicate<Friend>{$0.name.contains("A")}) var friends: [Friend]
     //Predicate, verilen bir koşula uyan verileri filtrelemek için kullanılıyor.
     //Sadece isminin içinde "A" harfi geçen Friend , friends listesine dahil edilir.
-
+    
     
     @Environment(\.modelContext) private var modelContext
     //@Environment uygulamanın çevresel durum bilgilerini (environment values) kullanıcının erişimine sunar.
@@ -61,17 +62,17 @@ struct Birthdays: View {
                         if friend.isBirthdayToday {
                             Image(systemName: "birthday.cake")
                         }
-                        DatePicker(selection: Binding(get:{friend.birthday},set:{friend.birthday = $0}),
-                                   in: Date.distantPast...Date.now,
-                                   displayedComponents: .date) {
-                            TextField("Add Name",
-                                      text:Binding(get:{friend.name},set:{friend.name = $0}))
-                            .bold(friend.isBirthdayToday)
-                        }
+                        DatePicker(
+                            selection: friend.bindingDate,
+                            in: Date.distantPast...Date.now,
+                            displayedComponents: .date) {
+                                TextField("Add Name", text: friend.bindingName)
+                                    .bold(friend.isBirthdayToday)
+                            }
                         
-//                        Spacer()
-//                        Text(friend.birthday,
-//                             format: .dateTime.day().month(.wide).year())
+                        //Spacer()
+                        //Text(friend.birthday,
+                        //     format: .dateTime.day().month(.wide).year())
                         
                     }
                 }
@@ -90,15 +91,7 @@ struct Birthdays: View {
                             .textFieldStyle(.roundedBorder)
                     }
                     Button("Save") {
-                        //View e erişemediğimiz için DatePicker e erişip selected date i okuyamayız
-                        //o yüzden @State newDate kullandık (TextField için aynı şey)
-                        let newFriend = Friend(name: newName, birthday: newDate)
-                        //friends.append(newFriend)
-                        modelContext.insert(newFriend)//database e yeni satır eklenecek.
-                        //database teki veriler değiştiği için View ler otomatik olarak güncellenip
-                        //friends listesine yeni Friend eklenecek.
-                        newName = ""
-                        newDate = .now
+                        addNewFriend()
                     }
                     .bold()
                 }
@@ -107,21 +100,39 @@ struct Birthdays: View {
             }
             .task {
                 //View görünmeden önce .task içindeki kod çalışacak.(viewWillAppear gibi)
-                //                modelContext.insert(Friend(name: "Elton Lin", birthday: .now))
-                //                modelContext.insert(Friend(name: "Jenny Court", birthday: Date(timeIntervalSince1970: 0)))
+                //modelContext.insert(Friend(name: "Elton Lin", birthday: .now))
+                //modelContext.insert(Friend(name: "Jenny Court", birthday: Date(timeIntervalSince1970: 0)))
                 //@Query bunları çeker ve friends listesi güncellenir.
             }
         }
     }
     
-    func deleteFriend(offsets: IndexSet) {
-        modelContext.delete(friends[offsets.first!])
+    private func addNewFriend() {
+        //View e erişemediğimiz için DatePicker e erişip selected date i okuyamayız
+        //o yüzden @State newDate kullandık (TextField için aynı şey)
+        let newFriend = Friend(name: newName, birthday: newDate)
+        //friends.append(newFriend)
+        modelContext.insert(newFriend)//database e yeni satır eklenecek.
+        //SwiftData otomatik kaydediyor.
+        //database teki veriler değiştiği için View ler otomatik olarak güncellenip
+        //friends listesine yeni Friend eklenecek.
+        newName = ""
+        newDate = .now
+    }
+    
+    private func deleteFriend(offsets: IndexSet) {
+        //offsets.map { friends[$0] }.forEach(modelContext.delete)
+        for index in offsets {
+            let friend = friends[index]
+            modelContext.delete(friend)
+            //SwiftData otomatik kaydediyor.
+        }
     }
 }
 
 @available(iOS 17, *)
 #Preview {
-    Birthdays()
+    BirthdaysSwiftData()
         .modelContainer(for: Friend.self, inMemory: true)
     //Preview her yenilendiğinde aynı başlangıç ​​durumunda başlamak için .modelContainer kullandık,
     //inMemory modunda, veriler yalnızca uygulama çalıştığı sürece bellekte(RAM da) tutulur ve uygulama kapandığında tamamen silinir.

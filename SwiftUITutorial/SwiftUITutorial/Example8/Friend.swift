@@ -5,7 +5,7 @@
 //  Created by Muhammad Alkhalaf on 15.01.2025.
 //
 
-import Foundation
+import SwiftUI
 import SwiftData
 //SwiftData, local database sağlamak için kullanılan yeni bir framework.
 //SwiftData, Apple'ın önceki Core Data framework'üne modern bir alternatif olarak geliştirilmiştir
@@ -23,9 +23,32 @@ class Friend {
         self.name = name
         self.birthday = birthday
     }
-    
+}
+
+
+// MARK: - Friend extension
+@available(iOS 17, *)
+extension Friend {
     var isBirthdayToday: Bool {
         Calendar.current.isDateInToday(birthday)
         //tarihinin bugünkü tarih olup olmadığını kontrol eder ve bir Bool döndürür. Eğer bugünle eşleşiyorsa true, eşleşmiyorsa false döner.
+    }
+    
+    var bindingName: Binding<String> {
+        Binding(get: {
+            self.name
+        },
+                set: {
+            self.name = $0 //SwiftData otomatik kaydediyor
+        })
+    }
+    
+    var bindingDate: Binding<Date> {
+        Binding(get: {
+            self.birthday
+        },
+                set: {
+            self.birthday = $0 //SwiftData otomatik kaydediyor
+        })
     }
 }
