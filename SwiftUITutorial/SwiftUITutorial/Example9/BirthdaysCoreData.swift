@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-@main
+//@main
 struct BirthdaysCoreDataApp: App {
     let coreDataController = CoreDataController.shared
     
@@ -53,7 +53,7 @@ struct BirthdaysCoreData: View {
                             Image(systemName: "birthday.cake")
                         }
                         DatePicker(
-                            selection: friend.bindingDate,
+                            selection: friend.bindingBirthday,
                             in: Date.distantPast...Date.now,
                             displayedComponents: .date) {
                                 TextField("Add Name", text: friend.bindingName)

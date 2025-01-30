@@ -11,10 +11,11 @@ import CoreData
 class CoreDataController {
     static let shared = CoreDataController()
     
-    let container: NSPersistentContainer
+    let container: NSPersistentContainer //SwiftData'daki ModelContainer'a benzerdir.
     
     private init() {
-        container = NSPersistentContainer(name: "Friend")
+        container = NSPersistentContainer(name: "Friend")//.modelContainer(for: Friend.self)
+        //ama buradaki Friend şu dosyaya işaret ediyor Friend.xcdatamodeld
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Failed to load Core Data stack: \(error)")
@@ -23,10 +24,13 @@ class CoreDataController {
     }
     
     func saveContext() {
-        do {
-            try container.viewContext.save()
-        } catch {
-            fatalError("Failed to save context: \(error)")
+        //viewContext verileri okumak, yazmak ve yönetmek için kullanılır. SwiftData'daki ModelContext'e benzerdir.
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            } catch {
+                fatalError("Failed to save context: \(error)")
+            }
         }
     }
 }
@@ -47,7 +51,7 @@ extension FriendCoreData {
         })
     }
     
-    var bindingDate : Binding<Date> {
+    var bindingBirthday : Binding<Date> {
         Binding(get: {
             self.birthday!
         },
